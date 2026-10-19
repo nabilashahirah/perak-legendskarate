@@ -360,8 +360,9 @@ export const hallOfFame = {
   ] satisfies Poster[],
 };
 
-const coach = (n: number, w: number, h: number, alt: string): Coach => ({
+const coach = (n: number, w: number, h: number, alt: string, people: Coach["people"]): Coach => ({
   id: `coach-${n}`,
+  people,
   portrait: { src: `/images/coaches/coach-${n}.webp`, width: w, height: h, alt },
   poster: {
     src: `/images/coaches/coach-${n}-poster.webp`,
@@ -377,11 +378,53 @@ export const coaches = {
   intro: "Champions coaching the next generation of champions.",
   items: [
     // Solo portraits first, then duo shots: the desktop mosaic fills row 1 with solos, row 2 with duos
-    coach(1, 290, 325, "Dr Wugindran Raja Saravanan, founder and head coach"),
-    coach(2, 300, 385, "Perak Legends coach in a black suit"),
-    coach(5, 300, 330, "Perak Legends coach smiling in a black suit"),
-    coach(3, 440, 280, "Two Perak Legends coaches holding their gold medals"),
-    coach(4, 400, 295, "Two Perak Legends coaches in dark suits"),
+    coach(1, 290, 325, "Dr Wugindran Raja Saravanan, founder and head coach", [
+      {
+        name: "Dr Wugindran Raja Saravanan (MBBS)",
+        credentials: [
+          "Graduated from MSU Shah Alam in 2020",
+          "First ever Asian Karate Champion (AKF) as a medical practitioner",
+          "Active medical practitioner in Ipoh, Perak",
+        ],
+      },
+    ]),
+    coach(2, 300, 385, "Master Harikrishnan", [
+      {
+        name: "Master Harikrishnan",
+        credentials: ["Former State Champion & National Medallist", "Active in karate for the last 20 years"],
+      },
+    ]),
+    coach(5, 300, 330, "Master Kauthemen", [
+      {
+        name: "Master Kauthemen",
+        credentials: ["Former State Champion & National Medallist", "Active in karate for the last 20 years"],
+      },
+    ]),
+    coach(3, 440, 280, "Master Navinessan Vickneswaran and Master Derren Nagenthiran with their gold medals", [
+      {
+        name: "Master Navinessan Vickneswaran",
+        credentials: ["Southeast Asia Bronze Medallist", "National Bronze Medallist", "SUKMA 2026 Representative for Terengganu"],
+      },
+      {
+        name: "Master Derren Nagenthiran",
+        credentials: ["National Silver Medallist", "National University Silver Medallist", "SUKMA 2026 Representative for Terengganu"],
+      },
+    ]),
+    coach(4, 400, 295, "Master Ghaneash Kumaran Alageasan and Master Yogish Umaganthan", [
+      {
+        name: "Master Ghaneash Kumaran Alageasan",
+        credentials: ["SUKMA 2022 Silver Medallist for Team Perak", "National Medallist", "National PDRM Medallist"],
+      },
+      {
+        name: "Master Yogish Umaganthan",
+        credentials: [
+          "National Medallist",
+          "Thailand Open Bronze Medallist 2022",
+          "Chief Referee of Kelab Karate Ipoh",
+          "SUKMA 2022 & 2024 Representative for Terengganu",
+        ],
+      },
+    ]),
   ],
 };
 

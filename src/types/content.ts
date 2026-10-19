@@ -59,8 +59,12 @@ export type ProgrammeGroup = {
 
 export type Faq = { question: string; answer: string };
 
+export type CoachPerson = { name: string; credentials: string[] };
+
 export type Coach = {
   id: string;
+  /** One person for solo portraits, two for duo photos (no left/right order implied) */
+  people: CoachPerson[];
   /** Cropped portrait shown in the gallery */
   portrait: SiteImage;
   /** Full original poster shown in the lightbox */
