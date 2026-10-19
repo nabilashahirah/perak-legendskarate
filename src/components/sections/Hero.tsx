@@ -13,10 +13,10 @@ export function Hero() {
         <div className="absolute inset-0 bg-[radial-gradient(120%_80%_at_75%_35%,#1d1508_0%,#0a0a0a_60%)]" />
         <div className="glow right-[-10%] top-[5%] size-[70vmax] opacity-70" />
         <div className="glow -left-1/4 bottom-[-30%] size-[50vmax] opacity-40" />
-        {/* Title-fight poster lines */}
-        <div className="absolute inset-y-0 left-[8%] w-px bg-gradient-to-b from-transparent via-gold/15 to-transparent" />
+        {/* Title-fight poster lines + outline word (desktop only: on phones they run through the centred text) */}
+        <div className="absolute inset-y-0 left-[8%] hidden w-px bg-gradient-to-b from-transparent via-gold/15 to-transparent lg:block" />
         <div className="absolute inset-y-0 right-[38%] hidden w-px bg-gradient-to-b from-transparent via-gold/10 to-transparent lg:block" />
-        <p className="display pointer-events-none absolute -bottom-[0.18em] left-1/2 -translate-x-1/2 select-none whitespace-nowrap text-[28vw] leading-none text-transparent [-webkit-text-stroke:1px_rgba(232,168,40,0.07)]">
+        <p className="display pointer-events-none absolute -bottom-[0.18em] left-1/2 hidden -translate-x-1/2 select-none whitespace-nowrap lg:block text-[28vw] leading-none text-transparent [-webkit-text-stroke:1px_rgba(232,168,40,0.07)]">
           Legends
         </p>
         <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-ink-950 to-transparent" />
@@ -27,9 +27,9 @@ export function Hero() {
           <ParallaxCrest />
         </div>
 
-        <div className="lg:order-1 lg:col-span-7">
-          <p className="anim-rise flex items-start gap-3 text-[0.68rem] font-medium uppercase leading-relaxed tracking-[0.2em] text-muted sm:text-xs">
-            <span aria-hidden="true" className="mt-[0.45em] inline-block size-1.5 shrink-0 rotate-45 bg-gold" />
+        <div className="text-center lg:order-1 lg:col-span-7 lg:text-left">
+          <p className="anim-rise mx-auto flex max-w-[46ch] items-start justify-center gap-3 text-[0.68rem] lg:mx-0 lg:justify-start font-medium uppercase leading-relaxed tracking-[0.2em] text-muted sm:text-xs">
+            <span aria-hidden="true" className="mt-[0.45em] hidden size-1.5 shrink-0 rotate-45 bg-gold lg:inline-block" />
             <span className="max-w-[46ch]">{site.affiliation}</span>
           </p>
 
@@ -41,16 +41,17 @@ export function Hero() {
             <span className="anim-rise h-display-xl text-gold-gradient block [animation-delay:200ms]">Legends</span>
           </h1>
 
-          <p className="anim-rise mt-6 max-w-md text-lg leading-relaxed text-cream/85 [animation-delay:280ms] sm:text-xl">
+          <p className="anim-rise mx-auto mt-6 max-w-md text-lg leading-relaxed lg:mx-0 text-cream/85 [animation-delay:280ms] sm:text-xl">
             {hero.subtitle}
           </p>
 
-          <div className="anim-rise mt-7 flex items-center gap-4 [animation-delay:340ms]">
-            <span aria-hidden="true" className="h-px w-10 bg-gold" />
+          <div className="anim-rise mt-7 flex items-center justify-center gap-4 [animation-delay:340ms] lg:justify-start">
+            <span aria-hidden="true" className="h-px w-8 bg-gold sm:w-10" />
             <p className="display text-2xl tracking-[0.08em] text-gold-light sm:text-3xl">{site.tagline}</p>
+            <span aria-hidden="true" className="h-px w-8 bg-gold sm:w-10 lg:hidden" />
           </div>
 
-          <div className="anim-rise mt-9 flex flex-col gap-3 [animation-delay:400ms] xs:flex-row">
+          <div className="anim-rise mx-auto mt-9 flex max-w-md flex-col gap-3 [animation-delay:400ms] xs:flex-row xs:justify-center lg:mx-0 lg:max-w-none lg:justify-start">
             <ButtonLink href={bookTrialLink} external size="lg">
               <WhatsAppIcon className="size-4" />
               {hero.primaryCta}
