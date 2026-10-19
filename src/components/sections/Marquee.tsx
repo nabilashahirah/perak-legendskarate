@@ -1,3 +1,7 @@
+"use client";
+
+import { Pause, Play } from "lucide-react";
+import { useState } from "react";
 import { marquee } from "@/content/site";
 
 function Row({ hidden }: { hidden?: boolean }) {
@@ -17,16 +21,34 @@ function Row({ hidden }: { hidden?: boolean }) {
   );
 }
 
-/** Slow infinite ticker of achievements. Pauses on hover; static under reduced motion. */
+/**
+ * Slow infinite ticker of achievements. Always moves (slower when the device asks for reduced motion);
+ * pauses on hover (desktop) and with the pause button (all devices).
+ */
 export function Marquee() {
+  const [paused, setPaused] = useState(false);
+
   return (
-    <section aria-label="Achievements" className="relative border-y border-hairline bg-ink-900">
-      <div className="group relative no-scrollbar flex overflow-hidden py-5 motion-reduce:overflow-x-auto [mask-image:linear-gradient(90deg,transparent,#000_8%,#000_92%,transparent)]">
-        <div className="marquee-track flex w-max animate-marquee group-hover:[animation-play-state:paused]">
+    <section aria-label="Achievements" className="relative flex items-stretch border-y border-hairline bg-ink-900">
+      <div className="group relative flex min-w-0 flex-1 overflow-hidden py-5 [mask-image:linear-gradient(90deg,transparent,#000_8%,#000_92%,transparent)]">
+        <div
+          className={`marquee-track flex w-max animate-marquee group-hover:[animation-play-state:paused] ${
+            paused ? "[animation-play-state:paused]" : ""
+          }`}
+        >
           <Row />
           <Row hidden />
         </div>
       </div>
+      <button
+        type="button"
+        onClick={() => setPaused((p) => !p)}
+        aria-pressed={paused}
+        aria-label={paused ? "Play achievements ticker" : "Pause achievements ticker"}
+        className="flex w-12 shrink-0 items-center justify-center border-l border-hairline text-muted transition-colors hover:text-gold-light sm:w-14"
+      >
+        {paused ? <Play className="size-4" /> : <Pause className="size-4" />}
+      </button>
     </section>
   );
 }

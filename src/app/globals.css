@@ -216,5 +216,9 @@ html.reveal-on [data-reveal] {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
   }
-  .marquee-track { animation: none !important; }
+  /* The achievements ticker keeps moving, just slower (it has a pause button) */
+  .marquee-track {
+    animation-duration: 100s !important;
+    animation-iteration-count: infinite !important;
+  }
 }
