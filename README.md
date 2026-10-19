@@ -80,8 +80,22 @@ The same script regenerates the logo variants, favicons/app icons and the Open G
 
 ## Deploy to Cloudflare Pages
 
+**Live site:** https://perak-legends.pages.dev (Cloudflare Pages project `perak-legends`)
+
+### Redeploy after changes (current setup: direct upload)
+```bash
+npx wrangler login     # once per computer: approve in the browser
+npm run deploy         # builds and uploads out/ to production
+```
+
+> Don't run `wrangler deploy` or let Wrangler "set up" the project: newer Wrangler versions try to convert
+> Next.js apps to a server build (OpenNext), which this static site doesn't need. `npm run deploy` uses
+> `wrangler pages deploy out`, which is the right command.
+
+### Optional: automatic deploys from GitHub
+
 1. Push this repository to GitHub (or GitLab).
-2. Cloudflare dashboard → **Workers & Pages → Create → Pages → Connect to Git** → choose the repo.
+2. Cloudflare dashboard → **Workers & Pages → Create → Pages → Connect to Git** → choose the repo. (Create a new project for it; a direct-upload project can't be switched to Git later.)
 3. Build settings:
    - **Framework preset:** `Next.js (Static HTML Export)`
    - **Build command:** `npm run build`

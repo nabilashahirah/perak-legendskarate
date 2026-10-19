@@ -8,7 +8,8 @@
     "postbuild": "node scripts/postbuild-flatten-rsc.mjs",
     "start": "next start",
     "lint": "eslint",
-    "images": "node scripts/process-images.mjs"
+    "images": "node scripts/process-images.mjs",
+    "deploy": "npm run build && npx --yes wrangler@4 pages deploy out --project-name perak-legends --branch main"
   },
   "dependencies": {
     "lucide-react": "^1.59.0",
