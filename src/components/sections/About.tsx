@@ -1,5 +1,4 @@
 import { about } from "@/content/site";
-import { CountUp } from "@/components/ui/CountUp";
 import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 
@@ -8,7 +7,7 @@ export function About() {
     <section id="about" aria-labelledby="about-title" className="section-y relative overflow-hidden">
       <div aria-hidden="true" className="glow -left-40 top-1/3 size-[36rem] opacity-60" />
       <div className="container-x relative">
-        <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
+        <div className="grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-16">
           <div className="lg:col-span-7">
             <SectionHeading id="about-title" index="01" eyebrow={about.eyebrow} title={about.title} />
             <Reveal delay={0.05}>
@@ -43,7 +42,7 @@ export function About() {
               <dd className="display text-[clamp(3.25rem,7vw,5.5rem)] text-cream">
                 {s.prefix && <span className="text-gold">{s.prefix}</span>}
                 {s.value !== undefined ? (
-                  <CountUp value={s.value} from={s.value > 100 ? s.value - 21 : 0} />
+                  <span className="tabular-nums">{s.value}</span>
                 ) : (
                   <span className="text-gold-gradient">{s.text}</span>
                 )}

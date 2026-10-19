@@ -6,7 +6,7 @@ export function Founder() {
   return (
     <section id="founder" aria-labelledby="founder-title" className="section-y relative overflow-hidden bg-ink-900">
       <div aria-hidden="true" className="glow -right-48 top-0 size-[40rem] opacity-50" />
-      <div className="container-x relative grid gap-14 lg:grid-cols-12 lg:gap-16">
+      <div className="container-x relative grid grid-cols-1 gap-14 lg:grid-cols-12 lg:gap-16">
         {/* Portrait with offset gold frame */}
         <Reveal className="pb-3 pr-3 sm:pb-5 sm:pr-5 lg:col-span-5">
           <div className="relative max-w-[300px] sm:max-w-[380px] lg:sticky lg:top-28 lg:mx-auto lg:max-w-[460px]">

@@ -44,7 +44,7 @@ export default function CentresPage() {
       {/* Contact */}
       <section id="contact" aria-labelledby="contact-title" className="relative overflow-hidden border-t border-hairline bg-ink-900">
         <div aria-hidden="true" className="glow -left-40 top-0 size-[36rem] opacity-50" />
-        <div className="container-x section-y relative grid gap-12 lg:grid-cols-12">
+        <div className="container-x section-y relative grid grid-cols-1 gap-12 lg:grid-cols-12">
           <Reveal className="lg:col-span-5">
             <p className="eyebrow">Contact</p>
             <h2 id="contact-title" className="display h-display-lg mt-5 text-cream">
@@ -58,7 +58,7 @@ export default function CentresPage() {
             </ButtonLink>
           </Reveal>
 
-          <ul className="grid gap-4 sm:grid-cols-3 lg:col-span-7 lg:grid-cols-1 xl:grid-cols-1">
+          <ul className="grid grid-cols-1 gap-4 sm:grid-cols-3 lg:col-span-7 lg:grid-cols-1">
             {[
               { label: "WhatsApp", value: contact.whatsappDisplay, href: whatsappLink(), Icon: WhatsAppIcon },
               { label: "Instagram", value: contact.instagramHandle, href: contact.instagram, Icon: InstagramIcon },
@@ -69,7 +69,7 @@ export default function CentresPage() {
                   href={href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group flex h-full items-center gap-5 rounded-[6px] border border-hairline bg-ink-950 p-5 transition-[border-color,transform] duration-300 hover:-translate-y-0.5 hover:border-gold/70 sm:flex-col sm:items-start lg:flex-row lg:items-center lg:p-6"
+                  className="group flex h-full min-w-0 items-center gap-5 rounded-[6px] border border-hairline bg-ink-950 p-5 transition-[border-color,transform] duration-300 hover:-translate-y-0.5 hover:border-gold/70 sm:flex-col sm:items-start lg:flex-row lg:items-center lg:p-6"
                 >
                   <span className="inline-flex size-12 shrink-0 items-center justify-center rounded-full border border-gold/50 text-gold-light transition-colors group-hover:bg-gold group-hover:text-ink-950">
                     <Icon className="size-5" />

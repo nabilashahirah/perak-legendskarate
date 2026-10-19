@@ -66,8 +66,8 @@ export function HallOfFame() {
 
       {/* 1 — Scoreboard (swipe strip on phones) */}
       <ul className="no-scrollbar mt-12 flex snap-x snap-mandatory gap-3 overflow-x-auto scroll-px-4 px-4 pb-2 sm:scroll-px-6 sm:px-6 lg:container-x lg:mt-16 lg:grid lg:grid-cols-3 lg:gap-4 lg:overflow-visible lg:pb-0">
-          {results.map((r, i) => (
-            <Reveal as="li" key={r.id} delay={i * 0.06} className="card-frame relative flex w-[84vw] max-w-[360px] shrink-0 snap-start flex-col overflow-hidden p-6 sm:p-8 lg:w-auto lg:max-w-none">
+          {results.map((r) => (
+            <li key={r.id} className="card-frame relative flex w-[84vw] max-w-[360px] shrink-0 snap-start flex-col overflow-hidden p-6 sm:p-8 lg:w-auto lg:max-w-none">
               <div aria-hidden="true" className="absolute inset-x-0 top-0 h-px bg-[var(--gold-gradient)] opacity-70" />
               {r.detail && <p className="eyebrow text-[0.65rem] text-muted">{r.detail}</p>}
               <h3 className="display mt-2 text-[1.75rem] leading-none text-cream lg:min-h-[3.5rem]">{r.event}</h3>
@@ -87,7 +87,7 @@ export function HallOfFame() {
                   ))}
                 </ul>
               )}
-            </Reveal>
+            </li>
           ))}
       </ul>
 
@@ -103,7 +103,7 @@ export function HallOfFame() {
         {athletes.map((a, i) => {
           const cover = a.images[0];
           return (
-            <Reveal as="li" key={a.id} delay={i * 0.06} className="w-[72vw] max-w-[320px] shrink-0 snap-start lg:w-auto lg:max-w-none">
+            <li key={a.id} className="w-[72vw] max-w-[320px] shrink-0 snap-start lg:w-auto lg:max-w-none">
               <button
                 type="button"
                 onClick={() => setOpen(athleteStart[i])}
@@ -133,7 +133,7 @@ export function HallOfFame() {
                   <span className="display mt-1.5 block text-[1.9rem] leading-[0.95] text-cream sm:text-4xl">{a.name}</span>
                 </span>
               </button>
-            </Reveal>
+            </li>
           );
         })}
       </ul>

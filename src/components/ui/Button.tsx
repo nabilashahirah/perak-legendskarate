@@ -5,7 +5,7 @@ type Variant = "primary" | "outline" | "ghost";
 type Size = "md" | "lg" | "sm";
 
 const base =
-  "group inline-flex items-center justify-center gap-2.5 rounded-[4px] font-semibold uppercase tracking-[0.14em] transition-[background-color,border-color,color,transform,box-shadow] duration-200 ease-out active:translate-y-px select-none whitespace-nowrap";
+  "group inline-flex items-center justify-center gap-2.5 rounded-[4px] font-semibold uppercase tracking-[0.14em] transition-[background-color,border-color,color,transform,box-shadow] duration-200 ease-out active:translate-y-px select-none text-center whitespace-normal sm:whitespace-nowrap";
 
 const variants: Record<Variant, string> = {
   primary:
@@ -16,9 +16,9 @@ const variants: Record<Variant, string> = {
 };
 
 const sizes: Record<Size, string> = {
-  sm: "min-h-11 px-4 text-[0.7rem]",
-  md: "min-h-12 px-6 text-[0.75rem]",
-  lg: "min-h-14 px-8 text-[0.8rem]",
+  sm: "min-h-11 px-4 py-2 text-[0.7rem]",
+  md: "min-h-12 px-6 py-2.5 text-[0.75rem]",
+  lg: "min-h-14 px-8 py-3 text-[0.8rem]",
 };
 
 type Props = {

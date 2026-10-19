@@ -18,7 +18,7 @@ export function Programmes() {
   return (
     <section id="programmes" aria-labelledby="programmes-title" className="section-y relative overflow-hidden">
       <div aria-hidden="true" className="glow left-1/2 top-1/4 size-[44rem] -translate-x-1/2 opacity-40" />
-      <div className="container-x relative grid items-center gap-12 lg:grid-cols-12 lg:gap-16">
+      <div className="container-x relative grid grid-cols-1 items-center gap-12 lg:grid-cols-12 lg:gap-16">
         <div className="lg:col-span-6">
           <SectionHeading id="programmes-title" index="03" eyebrow={programmes.eyebrow} title={programmes.title} intro={programmes.body} />
 

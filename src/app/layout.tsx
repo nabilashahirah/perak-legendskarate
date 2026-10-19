@@ -3,6 +3,7 @@ import { Bebas_Neue, Inter } from "next/font/google";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { FloatingWhatsApp } from "@/components/layout/FloatingWhatsApp";
+import { REVEAL_SCRIPT } from "@/components/ui/Reveal";
 import { centres, contact, site } from "@/content/site";
 import "./globals.css";
 
@@ -73,7 +74,10 @@ const jsonLd = {
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en-MY" className={`${bebas.variable} ${inter.variable}`}>
+    <html lang="en-MY" className={`${bebas.variable} ${inter.variable}`} suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: REVEAL_SCRIPT }} />
+      </head>
       <body className="grain">
         <script
           type="application/ld+json"

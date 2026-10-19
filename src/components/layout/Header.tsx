@@ -75,17 +75,17 @@ export function Header() {
       <header
         className={`fixed inset-x-0 top-0 z-50 transition-[background-color,border-color,backdrop-filter] duration-300 ${
           solid
-            ? "border-b border-hairline bg-ink-950/75 backdrop-blur-xl backdrop-saturate-150"
+            ? "border-b border-hairline bg-ink-950/95 md:bg-ink-950/75 md:backdrop-blur-xl md:backdrop-saturate-150"
             : "border-b border-transparent bg-gradient-to-b from-ink-950/70 to-transparent"
         }`}
       >
         <div className="container-x flex h-[var(--header-h)] items-center justify-between gap-3">
-          <Link href="/" className="flex shrink-0 items-center gap-2 sm:gap-3" aria-label={`${site.name}, home`} onClick={() => setMenuOpen(false)}>
-            <Image src={brandImages.badge.src} alt="" width={44} height={44} className="size-9 sm:size-11" />
-            {/* Wordmark hidden on very narrow phones so "Book a Trial" never wraps */}
-            <span className="hidden leading-none min-[370px]:block">
-              <span className="display block text-[1.25rem] tracking-[0.04em] text-cream sm:text-[1.5rem]">Perak Legends</span>
-              <span className="mt-0.5 hidden text-[0.6rem] font-semibold uppercase tracking-[0.28em] text-gold sm:block">Karate Academy</span>
+          <Link href="/" className="flex min-w-0 items-center gap-2 sm:gap-3" aria-label={`${site.name}, home`} onClick={() => setMenuOpen(false)}>
+            <Image src={brandImages.badge.src} alt="" width={44} height={44} className="size-9 shrink-0 sm:size-11" />
+            {/* Wordmark hidden on very narrow phones; it truncates (never pushes the menu off-screen) with large system text */}
+            <span className="hidden min-w-0 leading-none min-[370px]:block">
+              <span className="display block truncate text-[1.25rem] tracking-[0.04em] text-cream sm:text-[1.5rem]">Perak Legends</span>
+              <span className="mt-0.5 hidden truncate text-[0.6rem] font-semibold uppercase tracking-[0.28em] text-gold sm:block">Karate Academy</span>
             </span>
           </Link>
 
@@ -116,7 +116,7 @@ export function Header() {
             </ul>
           </nav>
 
-          <div className="flex items-center gap-2">
+          <div className="flex shrink-0 items-center gap-2">
             <a
               href={bookTrialLink}
               target="_blank"

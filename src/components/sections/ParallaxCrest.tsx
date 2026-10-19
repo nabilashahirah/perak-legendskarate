@@ -1,5 +1,6 @@
 "use client";
 
+import { useSyncExternalStore } from "react";
 import { preload } from "react-dom";
 import { motion, useReducedMotion, useScroll, useTransform } from "motion/react";
 import { brandImages } from "@/content/site";
@@ -9,16 +10,25 @@ import { brandImages } from "@/content/site";
 const SRC_SET = `/images/brand/crest-360.webp 360w, /images/brand/crest-480.webp 480w, /images/brand/crest-560.webp 560w, ${brandImages.logo.src} 800w`;
 const SIZES = "(min-width: 1024px) 520px, (min-width: 640px) 340px, 62vw";
 
+// Parallax only on large, mouse-driven screens; on phones it's wasted work during scrolling
+const DESKTOP_QUERY = "(min-width: 1024px) and (pointer: fine)";
+const subscribeDesktop = (cb: () => void) => {
+  const mq = window.matchMedia(DESKTOP_QUERY);
+  mq.addEventListener("change", cb);
+  return () => mq.removeEventListener("change", cb);
+};
+
 export function ParallaxCrest() {
   preload(brandImages.logo.src, { as: "image", imageSrcSet: SRC_SET, imageSizes: SIZES, fetchPriority: "high" });
 
   const reduce = useReducedMotion();
+  const desktop = useSyncExternalStore(subscribeDesktop, () => window.matchMedia(DESKTOP_QUERY).matches, () => false);
   const { scrollY } = useScroll();
   const y = useTransform(scrollY, [0, 800], [0, 140]);
   const opacity = useTransform(scrollY, [0, 700], [1, 0.35]);
 
   return (
-    <motion.div style={reduce ? undefined : { y, opacity }} className="relative mx-auto w-full">
+    <motion.div style={reduce || !desktop ? undefined : { y, opacity }} className="relative mx-auto w-full">
       <div aria-hidden="true" className="glow inset-[-12%] !bg-[radial-gradient(closest-side,rgb(232_168_40/0.28),transparent)]" />
       {/* eslint-disable-next-line @next/next/no-img-element -- manual srcset; next/image can't generate one in a static export */}
       <img
@@ -30,7 +40,7 @@ export function ParallaxCrest() {
         height={brandImages.logo.height}
         fetchPriority="high"
         decoding="async"
-        className="relative h-auto w-full drop-shadow-[0_30px_60px_rgba(0,0,0,0.6)]"
+        className="relative h-auto w-full lg:drop-shadow-[0_30px_60px_rgba(0,0,0,0.6)]"
       />
     </motion.div>
   );

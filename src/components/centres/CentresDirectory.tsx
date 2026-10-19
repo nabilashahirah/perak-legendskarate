@@ -15,9 +15,9 @@ export function CentresDirectory() {
   return (
     <div>
       {/* HQ (rendered without a reveal: it's above the fold and the LCP element) */}
-      <article id={hq.id} aria-labelledby={`${hq.id}-title`} className="card-frame relative grid scroll-mt-[calc(var(--header-h)+1rem)] overflow-hidden lg:grid-cols-12">
+      <article id={hq.id} aria-labelledby={`${hq.id}-title`} className="card-frame relative grid scroll-mt-[calc(var(--header-h)+1rem)] grid-cols-1 overflow-hidden lg:grid-cols-12">
         <div aria-hidden="true" className="absolute inset-x-0 top-0 z-10 h-px bg-[var(--gold-gradient)] opacity-80" />
-        <div className="p-6 sm:p-8 lg:col-span-5 lg:p-10">
+        <div className="min-w-0 p-6 sm:p-8 lg:col-span-5 lg:p-10">
           <span className="inline-flex items-center rounded-full border border-gold/70 bg-gold/10 px-3 py-1 text-[0.65rem] font-bold uppercase tracking-[0.22em] text-gold-light">
             Headquarters
           </span>

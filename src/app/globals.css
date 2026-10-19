@@ -160,8 +160,10 @@
     opacity: 0.55;
   }
 
-  /* Consistent warm grade on all photography */
-  .photo-grade { filter: saturate(0.9) contrast(1.06) sepia(0.1) brightness(0.96); }
+  /* Consistent warm grade on photography (desktop only: CSS filters make phone scrolling janky) */
+  @media (min-width: 768px) {
+    .photo-grade { filter: saturate(0.9) contrast(1.06) sepia(0.1) brightness(0.96); }
+  }
 
   /* Soft radial glow placed behind key sections */
   .glow {
@@ -178,7 +180,21 @@
   }
 }
 
-/* Film-grain overlay over the whole page */
+/* Scroll reveal: content is visible unless the reveal script is confirmed running (html.reveal-on) */
+html.reveal-on [data-reveal]:not(.is-in) {
+  opacity: 0;
+  transform: translate3d(0, var(--reveal-y, 16px), 0);
+}
+html.reveal-on [data-reveal] {
+  transition:
+    opacity 450ms var(--ease-out-quint) var(--reveal-delay, 0s),
+    transform 450ms var(--ease-out-quint) var(--reveal-delay, 0s);
+}
+
+/* Film-grain overlay (desktop only: a full-screen fixed layer is costly on phones) */
+@media (max-width: 767px) {
+  .grain::after { display: none; }
+}
 .grain::after {
   content: "";
   position: fixed;

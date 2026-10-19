@@ -4,7 +4,6 @@ import Image from "next/image";
 import { useState } from "react";
 import { coaches } from "@/content/site";
 import { Lightbox } from "@/components/ui/Lightbox";
-import { Reveal } from "@/components/ui/Reveal";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 
 /**
@@ -30,10 +29,8 @@ export function Coaches() {
         {items.map((c, i) => {
           const isDuo = c.portrait.width > c.portrait.height;
           return (
-            <Reveal
-              as="li"
+            <li
               key={c.id}
-              delay={i * 0.06}
               className={`shrink-0 snap-start ${isDuo ? "w-[84vw] max-w-[420px] md:col-span-3" : "w-[64vw] max-w-[300px] md:col-span-2"} md:w-auto md:max-w-none`}
             >
               <button
@@ -50,15 +47,15 @@ export function Coaches() {
                   width={c.portrait.width}
                   height={c.portrait.height}
                   sizes={isDuo ? "(min-width: 768px) 600px, 84vw" : "(min-width: 768px) 400px, 64vw"}
-                  className="photo-grade absolute inset-0 size-full object-cover object-top saturate-[0.4] transition-[transform,filter] duration-700 ease-out group-hover:scale-[1.03] group-hover:saturate-[0.85]"
+                  className="photo-grade absolute inset-0 size-full object-cover object-top saturate-[0.55] transition-[transform,filter] duration-700 ease-out group-hover:scale-[1.03] group-hover:saturate-[0.85]"
                 />
-                <span aria-hidden="true" className="absolute inset-0 bg-[#3a2606]/35 mix-blend-color" />
+                <span aria-hidden="true" className="absolute inset-0 hidden bg-[#3a2606]/35 mix-blend-color md:block" />
                 <span aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-ink-950/85 via-ink-950/10 to-ink-950/20" />
                 <span className="absolute bottom-3 left-4 font-display text-lg tracking-[0.12em] text-gold-light">
                   {String(i + 1).padStart(2, "0")}
                 </span>
               </button>
-            </Reveal>
+            </li>
           );
         })}
       </ul>

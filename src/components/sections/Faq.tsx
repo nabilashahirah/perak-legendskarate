@@ -22,7 +22,7 @@ export function Faq() {
   return (
     <section id="faq" aria-labelledby="faq-title" className="section-y relative overflow-hidden border-t border-hairline bg-ink-900">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd).replace(/</g, "\\u003c") }} />
-      <div className="container-x relative grid gap-10 lg:grid-cols-12 lg:gap-16">
+      <div className="container-x relative grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-16">
         <div className="lg:col-span-4">
           <div className="lg:sticky lg:top-28">
             <SectionHeading id="faq-title" index="06" eyebrow={faq.eyebrow} title={faq.title} />

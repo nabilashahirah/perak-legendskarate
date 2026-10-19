@@ -22,7 +22,7 @@ export function Hero() {
         <div className="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-ink-950 to-transparent" />
       </div>
 
-      <div className="container-x grid items-center gap-10 lg:grid-cols-12 lg:gap-6">
+      <div className="container-x grid grid-cols-1 items-center gap-10 lg:grid-cols-12 lg:gap-6">
         <div className="mx-auto w-[min(62vw,280px)] sm:w-[340px] lg:order-2 lg:col-span-5 lg:w-full lg:max-w-[520px]">
           <ParallaxCrest />
         </div>
