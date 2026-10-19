@@ -7,7 +7,7 @@ import { Lightbox } from "@/components/ui/Lightbox";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 
 /**
- * Mobile: horizontal snap-scroll strip.
+ * Mobile: horizontal snap-scroll strip; every card the same square size (solo and duo photos alike).
  * Desktop: mosaic. Solo portraits share one row, duo shots the next, so every row is flush
  * (a column masonry with only 5 mixed-ratio images leaves ragged holes).
  */
@@ -31,13 +31,13 @@ export function Coaches() {
           return (
             <li
               key={c.id}
-              className={`shrink-0 snap-start ${isDuo ? "w-[84vw] max-w-[420px] md:col-span-3" : "w-[64vw] max-w-[300px] md:col-span-2"} md:w-auto md:max-w-none`}
+              className={`w-[70vw] max-w-[280px] shrink-0 snap-start md:w-auto md:max-w-none ${isDuo ? "md:col-span-3" : "md:col-span-2"}`}
             >
               <button
                 type="button"
                 onClick={() => setOpen(i)}
                 className={`group relative block w-full cursor-zoom-in overflow-hidden rounded-[6px] border border-hairline bg-ink-800 transition-[transform,border-color] duration-300 ease-out hover:-translate-y-1 hover:border-gold/70 ${
-                  isDuo ? "aspect-[3/2] md:aspect-[16/10]" : "aspect-[4/5]"
+                  isDuo ? "aspect-square md:aspect-[16/10]" : "aspect-square md:aspect-[4/5]"
                 }`}
                 aria-label={`View poster: ${c.portrait.alt}`}
               >
@@ -46,7 +46,7 @@ export function Coaches() {
                   alt={c.portrait.alt}
                   width={c.portrait.width}
                   height={c.portrait.height}
-                  sizes={isDuo ? "(min-width: 768px) 600px, 84vw" : "(min-width: 768px) 400px, 64vw"}
+                  sizes={isDuo ? "(min-width: 768px) 600px, 280px" : "(min-width: 768px) 400px, 280px"}
                   className="photo-grade absolute inset-0 size-full object-cover object-top saturate-[0.55] transition-[transform,filter] duration-700 ease-out group-hover:scale-[1.03] group-hover:saturate-[0.85]"
                 />
                 <span aria-hidden="true" className="absolute inset-0 hidden bg-[#3a2606]/35 mix-blend-color md:block" />
