@@ -9,7 +9,7 @@ export function Founder() {
       <div className="container-x relative grid gap-14 lg:grid-cols-12 lg:gap-16">
         {/* Portrait with offset gold frame */}
         <Reveal className="pb-3 pr-3 sm:pb-5 sm:pr-5 lg:col-span-5">
-          <div className="relative mx-auto max-w-[460px] lg:sticky lg:top-28">
+          <div className="relative max-w-[300px] sm:max-w-[380px] lg:sticky lg:top-28 lg:mx-auto lg:max-w-[460px]">
             <div aria-hidden="true" className="absolute inset-0 translate-x-3 translate-y-3 rounded-[6px] border border-gold/60 sm:translate-x-5 sm:translate-y-5" />
             <div className="relative overflow-hidden rounded-[6px] bg-[#f4f2ee]">
               <Image
@@ -17,7 +17,7 @@ export function Founder() {
                 alt={founder.image.alt}
                 width={founder.image.width}
                 height={founder.image.height}
-                sizes="(min-width: 1024px) 460px, 90vw"
+                sizes="(min-width: 1024px) 460px, 380px"
                 className="photo-grade h-auto w-full"
               />
               <div aria-hidden="true" className="absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-t from-ink-950/95 via-ink-950/50 to-transparent" />
@@ -54,7 +54,7 @@ export function Founder() {
           </Reveal>
 
           {/* Timeline */}
-          <Reveal delay={0.05} className="mt-12">
+          <Reveal delay={0.05} className="mt-10">
             <h3 className="eyebrow text-muted">Career milestones</h3>
             <ol className="relative mt-6 border-l border-gold/30 pl-0">
               {founder.timeline.map((t, i) => (
@@ -71,11 +71,11 @@ export function Founder() {
           </Reveal>
 
           {/* Count badges */}
-          <ul className="mt-12 grid grid-cols-2 gap-3 sm:gap-4">
+          <ul className="mt-10 grid grid-cols-3 gap-2 sm:gap-4">
             {founder.counts.map((c, i) => (
-              <Reveal as="li" key={c.label} delay={i * 0.06} className="card-frame flex flex-col justify-between gap-3 p-5 sm:p-6">
-                <span className="display text-gold-gradient text-5xl sm:text-6xl">{c.value}</span>
-                <span className="text-sm leading-snug text-cream/85">{c.label}</span>
+              <Reveal as="li" key={c.label} delay={i * 0.06} className="card-frame flex flex-col justify-between gap-2 p-4 sm:gap-3 sm:p-6">
+                <span className="display text-gold-gradient text-4xl sm:text-6xl">{c.value}</span>
+                <span className="text-xs leading-snug text-cream/85 sm:text-sm">{c.label}</span>
               </Reveal>
             ))}
           </ul>

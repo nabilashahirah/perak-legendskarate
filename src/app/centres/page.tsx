@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { centres, centresPage, contact, site } from "@/content/site";
 import { bookTrialLink, whatsappLink } from "@/lib/links";
-import { CentreCard } from "@/components/centres/CentreCard";
+import { CentreLocator } from "@/components/centres/CentreLocator";
 import { InstagramIcon, TikTokIcon, WhatsAppIcon } from "@/components/ui/BrandIcons";
 import { Reveal } from "@/components/ui/Reveal";
 import { ButtonLink } from "@/components/ui/Button";
@@ -20,7 +20,7 @@ export default function CentresPage() {
   return (
     <>
       {/* Page hero */}
-      <section aria-labelledby="centres-title" className="relative overflow-hidden pb-14 pt-[calc(var(--header-h)+4rem)] sm:pb-20 sm:pt-[calc(var(--header-h)+6rem)]">
+      <section aria-labelledby="centres-title" className="relative overflow-hidden pb-10 pt-[calc(var(--header-h)+3.5rem)] sm:pb-14 sm:pt-[calc(var(--header-h)+5rem)]">
         <div aria-hidden="true" className="absolute inset-0 -z-10 bg-[radial-gradient(90%_70%_at_80%_0%,#22180a_0%,#0a0a0a_60%)]" />
         <div aria-hidden="true" className="glow -right-32 -top-32 size-[40rem] opacity-60" />
         <div className="container-x relative">
@@ -32,29 +32,12 @@ export default function CentresPage() {
             Our <span className="text-gold-gradient">Centres</span>
           </h1>
           <p className="anim-rise mt-6 max-w-xl text-lg text-cream/85 [animation-delay:160ms]">{centresPage.intro}</p>
-          <ul className="anim-rise mt-8 flex flex-wrap gap-2 [animation-delay:220ms]" aria-label="Jump to a centre">
-            {centres.map((c) => (
-              <li key={c.id}>
-                <a
-                  href={`#${c.id}`}
-                  className="inline-flex min-h-11 items-center gap-2 rounded-full border border-hairline px-4 text-xs font-semibold uppercase tracking-[0.16em] text-cream/85 transition-colors hover:border-gold hover:text-gold-light"
-                >
-                  {c.name}
-                  {c.isHQ && <span className="text-gold">· HQ</span>}
-                </a>
-              </li>
-            ))}
-          </ul>
         </div>
       </section>
 
-      <section aria-label="Centre list" className="pb-20 sm:pb-28">
-        <div className="container-x space-y-5 sm:space-y-6">
-          {centres.map((c, i) => (
-            <div key={c.id} id={c.id} className="scroll-mt-[calc(var(--header-h)+1rem)]">
-              <CentreCard centre={c} index={i} />
-            </div>
-          ))}
+      <section aria-label="Centre finder" className="pb-20 sm:pb-28">
+        <div className="container-x">
+          <CentreLocator />
         </div>
       </section>
 

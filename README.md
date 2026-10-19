@@ -37,7 +37,8 @@ npx serve out      # preview it at http://localhost:3000
 | Book-a-Trial WhatsApp message | `trialMessage` (and `centreTrialMessage` for per-centre buttons; `{centre}` is replaced with the centre name) |
 | Hero, About, Founder, Programmes text | `hero`, `about`, `founder`, `programmes` |
 | Scrolling achievements ticker | `marquee` |
-| Hall of Fame cards | `hallOfFame.items` (see note below) |
+| Hall of Fame scoreboard, athletes, posters | `hallOfFame` (see note below) |
+| Classes by age, FAQ | `programmes.groups`, `faq` |
 | Coaches gallery | `coaches.items` |
 | Centre addresses, maps, schedules | `centres` |
 | Site domain (for SEO / sitemap) | `site.url` |
@@ -46,10 +47,10 @@ Search the file for **`TODO`** to find everything that's still missing.
 
 ### Centres
 Each centre has:
-- `address`: replace `"TODO: full address"` with the real address (the page shows *"Full address coming soon"* until you do).
+- `address`: replace `"TODO: full address"` with the real address (the page shows the area plus *"Full address coming soon"* until you do).
 - `mapQuery`: what the embedded Google Map searches for. Once the address is known, put the full address here.
 - `mapUrl`: optional Google Maps share link (`https://maps.app.goo.gl/...`) for the **Open in Maps** button. Without it, the button opens a search for `mapQuery`.
-- `schedule`: a list of `{ day, time, group }` rows, e.g.
+- `schedule`: a list of `{ day, time, group }` rows. While it's empty the page says *"Message us on WhatsApp for current class times"*. Example:
   ```ts
   schedule: [
     { day: "Tuesday", time: "8:00pm – 9:30pm", group: "Kids (6–12)" },
@@ -57,10 +58,15 @@ Each centre has:
   ],
   ```
 
-### Hall of Fame layout
-The grid is a bento layout: `size: "feature"` and `size: "large"` are 2×2 cards and `size: "tall"` is 1×2.
-To keep the grid free of holes, keep **talls in pairs**: each block of rows is either one 2×2 card + two talls,
-or four talls. Use `focus: "center"` for real photos (posters default to the top of the image).
+### Hall of Fame
+`hallOfFame` in `site.ts` has three parts:
+- `results`: the scoreboard cards (event, headline like `"3rd"`, medal counts, short notes). Each entry notes which poster its figures came from.
+- `athletes`: real photos of medallists. The first image is the card; all images open in the lightbox.
+- `posters`: the client's result posters, shown as a small archive strip and opened full-size in the lightbox.
+
+### Programmes by age, FAQ
+- `programmes.groups`: age-group cards (name, ages, description, details). **The "Classes by age" block stays hidden until this has at least one entry.** An example is in the comment.
+- `faq.items`: questions and answers. They're also published as FAQ structured data for Google. Commented TODO questions (ages, fees, what to bring) are ready to fill in.
 
 ### Adding or replacing photos
 1. Put the original photo in `assets-raw/` (this folder is git-ignored and keeps the untouched originals).
@@ -97,8 +103,8 @@ src/
   app/                 routes: page.tsx (home), centres/, not-found.tsx, robots/sitemap/manifest
   components/
     layout/            Header, Footer, floating WhatsApp button
-    sections/          Home page sections (Hero, About, Founder, Programmes, HallOfFame, Coaches…)
-    centres/           Centre card + lazy map embed
+    sections/          Home page sections (Hero, About, Founder, Programmes, HallOfFame, Coaches, Faq…)
+    centres/           Centre locator (list + map panel) and lazy map embed
     ui/                Buttons, Lightbox, Reveal (scroll animation), CountUp, brand icons
   content/site.ts      ← ALL editable content
   lib/links.ts         WhatsApp / Google Maps URL helpers

@@ -5,6 +5,7 @@ import { Founder } from "@/components/sections/Founder";
 import { Programmes } from "@/components/sections/Programmes";
 import { HallOfFame } from "@/components/sections/HallOfFame";
 import { Coaches } from "@/components/sections/Coaches";
+import { Faq } from "@/components/sections/Faq";
 import { FinalCta } from "@/components/sections/FinalCta";
 
 export default function HomePage() {
@@ -17,6 +18,7 @@ export default function HomePage() {
       <Programmes />
       <HallOfFame />
       <Coaches />
+      <Faq />
       <FinalCta />
     </>
   );

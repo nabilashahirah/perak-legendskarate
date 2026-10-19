@@ -67,6 +67,35 @@ export function Programmes() {
         </Reveal>
       </div>
 
+      {/* Classes by age: hidden until programmes.groups is filled in (site.ts) */}
+      {programmes.groups.length > 0 && (
+        <div className="container-x relative mt-16 lg:mt-24">
+          <h3 className="eyebrow flex items-center gap-3">
+            <span aria-hidden="true" className="h-px w-8 bg-gold/60" />
+            {programmes.groupsTitle}
+          </h3>
+          <ul className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {programmes.groups.map((g, i) => (
+              <Reveal as="li" key={g.name} delay={i * 0.06} className="card-frame relative flex flex-col p-6 sm:p-7">
+                <div aria-hidden="true" className="absolute inset-x-0 top-0 h-px bg-[var(--gold-gradient)] opacity-60" />
+                <p className="eyebrow text-[0.68rem]">{g.ages}</p>
+                <h4 className="display mt-2 text-3xl text-cream">{g.name}</h4>
+                <p className="mt-3 flex-1 text-sm leading-relaxed text-cream/80">{g.description}</p>
+                {g.details && g.details.length > 0 && (
+                  <ul className="mt-5 flex flex-wrap gap-2">
+                    {g.details.map((d) => (
+                      <li key={d} className="rounded-full border border-hairline px-3 py-1 text-xs text-cream/85">
+                        {d}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </Reveal>
+            ))}
+          </ul>
+        </div>
+      )}
+
       <Lightbox
         label="Belt progression chart"
         items={[{ ...chart, eyebrow: programmes.eyebrow, title: "Belt progression" }]}

@@ -6,12 +6,16 @@
  * Images live in /public/images (regenerate with `npm run images`, see scripts/process-images.mjs).
  */
 import type {
+  Athlete,
   Centre,
   Coach,
+  Faq,
   FounderAchievement,
   FounderCount,
-  HallOfFameItem,
   NavItem,
+  Poster,
+  ProgrammeGroup,
+  ResultCard,
   SiteImage,
 } from "@/types/content";
 
@@ -82,16 +86,15 @@ export const hero = {
   secondaryCta: "Our Centres",
 };
 
+// Academy results only; the founder's personal record lives in the Founder section
 export const marquee: string[] = [
-  "Asian Gold 2011",
-  "SUKMA Champion 2014",
-  "6x National Champion",
-  "Top 3 Nationwide 2026",
-  "Asian Bronze 2010",
   "National Champion 2026",
-  "14x National Medallist",
-  "Southeast Asia Bronze",
-  "World Championship Quarter-Finalist 2011",
+  "Top 3 Nationwide out of 72 Teams",
+  "Southeast Asia Bronze Medallist",
+  "4 National Medals 2026",
+  "National University Silver 2026",
+  "25th MILO Karate Championship",
+  "5 Centres Across Perak",
 ];
 
 export const about = {
@@ -127,22 +130,18 @@ export const founder = {
   highlights: [
     "First ever Asian Karate Champion (AKF) as a medical practitioner",
     "First ever medical doctor national karate medallist while actively working as a Medical Officer serving Hospital Raja Permaisuri Bainun (2023)",
-    "Graduated from MSU Shah Alam in 2020",
-    "Active medical practitioner in Ipoh, Perak",
+    "MBBS, MSU Shah Alam (2020). Active medical practitioner in Ipoh, Perak",
   ],
   timeline: [
     { year: "2010", title: "Asian Bronze Medallist", detail: "AKF · Hong Kong" },
     { year: "2011", title: "Asian Gold Medallist", detail: "AKF · China" },
     { year: "2011", title: "World Championship Quarter-Finalist", detail: "Melaka, Malaysia" },
     { year: "2014", title: "SUKMA Champion", detail: "Perlis" },
-    { year: "2020", title: "Graduated MBBS", detail: "MSU Shah Alam" },
-    { year: "2023", title: "National Medallist as a serving Medical Officer", detail: "Hospital Raja Permaisuri Bainun" },
   ] satisfies FounderAchievement[],
   counts: [
     { value: "6x", label: "National Champion" },
     { value: "14x", label: "National Medallist" },
     { value: "1x", label: "National University Champion" },
-    { value: "1st", label: "Asian Champion as a medical practitioner" },
   ] satisfies FounderCount[],
 };
 
@@ -165,6 +164,13 @@ export const programmes = {
     alt: "Row of karate belts from white through yellow, orange, blue, red and brown to black",
   } satisfies SiteImage,
   cta: "Book a Trial",
+  groupsTitle: "Classes by age",
+  /**
+   * TODO: fill in from the client. The "Classes by age" cards stay hidden while this is empty.
+   * Example:
+   * { name: "Little Legends", ages: "Ages 5–7", description: "Fun fundamentals: balance, coordination and focus.", details: ["2x a week", "45 min"] },
+   */
+  groups: [] as ProgrammeGroup[],
 };
 
 const hof = (name: string, width: number, height: number, alt: string): SiteImage => ({
@@ -178,99 +184,133 @@ const hof = (name: string, width: number, height: number, alt: string): SiteImag
 export const hallOfFame = {
   eyebrow: "Hall of Fame",
   title: "Hall of Fame 2026",
-  intro: "A year written in gold. Tap any card to view it in full.",
-  // Order matters: the grid tiles in 2-row bands of [2x2 + two talls] or [four talls].
-  items: [
+  intro: "A year written in gold.",
+
+  /**
+   * Scoreboard. Figures are taken from the academy's own result posters
+   * (source poster noted on each entry). Update here when new results come in.
+   */
+  results: [
+    {
+      // Source: OVERALLMEDALNATIONALCHAMPION 2026 poster
+      id: "national-2026",
+      event: "National Karate Championship 2026",
+      detail: "34th MAKAF · Cadet, Junior & U21",
+      headline: "4",
+      headlineLabel: "National medals",
+      medals: { gold: 1, silver: 2, bronze: 1 },
+      notes: [
+        "Gold · Samson Kendrick",
+        "Silver · Derren Nagenthiran",
+        "Silver (Team Kumite) · Hasvin Arun",
+        "Bronze · Navinessan Vickneswaran",
+      ],
+    },
+    {
+      // Source: TOP3NSATIONALWIDE posters
+      id: "top-3",
+      event: "Top 3 Nationwide",
+      detail: "Karate Club Championship 2026",
+      headline: "3rd",
+      headlineLabel: "out of 72 teams",
+      medals: { gold: 9, silver: 5, bronze: 9 },
+      notes: ["42 athletes · 23 medallists", "Highest ever finish by a Perak team"],
+    },
+    {
+      // Source: 25THMILOKARATECHAMPIONSHIP2026 posters
+      id: "milo-2026",
+      event: "25th MILO Karate Championship",
+      detail: "2026 · International Open",
+      headline: "8th",
+      headlineLabel: "out of 64 teams",
+      medals: { gold: 6, silver: 1, bronze: 1 },
+      notes: ["Clubs from 7+ countries"],
+    },
+  ] satisfies ResultCard[],
+  /** Source: HallofFame poster ("Overall national medals since 2021") */
+  sinceFounding: { label: "National medals since 2021", medals: { gold: 1, silver: 4, bronze: 5 } },
+
+  athletesTitle: "Our champions",
+  athletes: [
+    {
+      id: "samson",
+      name: "Samson Kendrick",
+      achievement: "National Champion 2026",
+      images: [
+        hof("samson-kendrick-1", 810, 1080, "Samson Kendrick on top of the podium at the National Karate Championship 2026"),
+        hof("samson-kendrick-2", 1080, 810, "Samson Kendrick receiving his gold medal on the national championship podium"),
+      ],
+    },
+    {
+      id: "navin",
+      name: "Master Navinessan Vickneswaran",
+      achievement: "Southeast Asia Bronze Medallist",
+      images: [
+        hof("navinessan-vickneswaran", 960, 1280, "Master Navinessan Vickneswaran holding his Southeast Asia bronze medal in the competition arena"),
+      ],
+    },
+    {
+      id: "derren",
+      name: "Derren Nagenthiran",
+      achievement: "National University Silver Medallist 2026",
+      images: [
+        hof("derren-nagenthiran", 1280, 960, "Derren Nagenthiran on the podium with his silver medal at the national university games 2026"),
+      ],
+    },
+  ] satisfies Athlete[],
+
+  postersTitle: "Championship posters",
+  posters: [
     {
       id: "hall-of-fame-2026",
       eyebrow: "Hall of Fame",
       title: "Perak Legends 2026",
-      size: "feature",
       image: hof("hall-of-fame-2026", 592, 1066, "Perak Legends Hall of Fame 2026 poster listing the academy's national medallists"),
-    },
-    {
-      id: "samson-1",
-      eyebrow: "National Champion 2026",
-      title: "Samson Kendrick",
-      focus: "center",
-      size: "tall",
-      image: hof("samson-kendrick-1", 810, 1080, "Samson Kendrick on top of the podium at the National Karate Championship 2026"),
-    },
-    {
-      id: "navin",
-      eyebrow: "Southeast Asia Bronze Medallist",
-      title: "Master Navinessan Vickneswaran",
-      focus: "center",
-      size: "tall",
-      image: hof("navinessan-vickneswaran", 960, 1280, "Master Navinessan Vickneswaran holding his Southeast Asia bronze medal in the competition arena"),
     },
     {
       id: "overall-medal",
       eyebrow: "National Championship 2026",
       title: "Overall Medal",
-      size: "tall",
-      image: hof("overall-medal-national-2026", 960, 1280, "Poster celebrating Perak Legends' overall medal tally at the National Karate Championship 2026"),
+      image: hof("overall-medal-national-2026", 960, 1280, "Poster celebrating Perak Legends' four medals at the National Karate Championship 2026"),
     },
     {
       id: "top3-1",
       eyebrow: "2026",
       title: "Top 3 Nationwide out of 72 Teams",
-      size: "tall",
       image: hof("top-3-nationwide-1", 960, 1280, "Poster announcing Perak Legends finishing Top 3 nationwide out of 72 teams"),
-    },
-    {
-      id: "derren",
-      eyebrow: "National University Silver Medallist 2026",
-      title: "Derren Nagenthiran",
-      focus: "center",
-      size: "large",
-      image: hof("derren-nagenthiran", 1280, 960, "Derren Nagenthiran on the podium with his silver medal at the national university games 2026"),
-    },
-    {
-      id: "samson-2",
-      eyebrow: "National Champion 2026",
-      title: "Samson Kendrick",
-      focus: "center",
-      size: "large",
-      image: hof("samson-kendrick-2", 1080, 810, "Samson Kendrick receiving his gold medal on the national championship podium"),
-    },
-    {
-      id: "milo-1",
-      eyebrow: "2026",
-      title: "25th MILO Karate Championship",
-      size: "tall",
-      image: hof("milo-championship-2026-1", 853, 1280, "Perak Legends' young athletes with their medals at the 25th MILO Karate Championship 2026"),
-    },
-    {
-      id: "malaysia-day",
-      eyebrow: "2026",
-      title: "4th Malaysia Day Karate Championship",
-      size: "tall",
-      image: hof("malaysia-day-championship-2026", 512, 1280, "4th Malaysia Day Karate Championship 2026 poster featuring Dr Wugindran Raja Saravanan"),
     },
     {
       id: "top3-2",
       eyebrow: "2026",
       title: "Top 3 Nationwide out of 72 Teams",
-      size: "tall",
       image: hof("top-3-nationwide-2", 853, 1280, "Poster: Perak Legends 3rd over 72 teams, history made, Perak proud"),
+    },
+    {
+      id: "milo-1",
+      eyebrow: "2026",
+      title: "25th MILO Karate Championship",
+      image: hof("milo-championship-2026-1", 853, 1280, "Perak Legends' young athletes with their medals at the 25th MILO Karate Championship 2026"),
     },
     {
       id: "milo-2",
       eyebrow: "2026",
       title: "25th MILO Karate Championship",
-      size: "tall",
       image: hof("milo-championship-2026-2", 853, 1280, "Perak Legends team holding the Perak flag at the 25th MILO Karate Championship 2026"),
+    },
+    {
+      id: "malaysia-day",
+      eyebrow: "2026",
+      title: "4th Malaysia Day Karate Championship",
+      image: hof("malaysia-day-championship-2026", 512, 1280, "4th Malaysia Day Karate Championship 2026 poster featuring Dr Wugindran Raja Saravanan"),
     },
     {
       // From the client's own poster; confirm wording with the client
       id: "no1",
       eyebrow: "Recognition",
       title: "No.1 Standalone Karate Club / Academy in Perak",
-      size: "large",
       image: hof("no1-standalone-club-perak", 960, 1280, "Poster naming Perak Legends the No.1 standalone karate club and academy in Perak, featuring founder Dr Wugindran Raja Saravanan"),
     },
-  ] satisfies HallOfFameItem[],
+  ] satisfies Poster[],
 };
 
 const coach = (n: number, w: number, h: number, alt: string): Coach => ({
@@ -298,6 +338,40 @@ export const coaches = {
   ],
 };
 
+export const faq = {
+  eyebrow: "FAQ",
+  title: "Questions, answered",
+  items: [
+    {
+      question: "How do I book a trial class?",
+      answer:
+        "Send us a WhatsApp message on 010-828 2417 with your name, age, preferred centre and preferred day, and we'll arrange your first class.",
+    },
+    {
+      question: "Where are your centres?",
+      answer: "We train at five centres across Perak: Buntong (HQ), Tasek, Batu Gajah, Kampar and Botani.",
+    },
+    {
+      question: "Who runs the academy?",
+      answer:
+        "Perak Legends was founded in April 2021 by Dr Wugindran Raja Saravanan (MBBS), Asian Gold Medallist (AKF) 2011, SUKMA 2014 Champion and 6x National Champion.",
+    },
+    {
+      question: "Is the academy officially affiliated?",
+      answer: "Yes. We are affiliated to Kelab Karate Ipoh under Pesuruhjaya Sukan Malaysia (KBS).",
+    },
+    {
+      question: "How does belt progression work?",
+      answer:
+        "Students progress through a structured belt system from white belt to black belt. You can view the full chart in the Programmes section above.",
+    },
+    // TODO: add once the client confirms the details
+    // { question: "What ages do you teach?", answer: "" },
+    // { question: "How much are the fees?", answer: "" },
+    // { question: "What should I bring to my first class?", answer: "" },
+  ] satisfies Faq[],
+};
+
 export const finalCta = {
   title: "Ready to start your journey?",
   body: "Book a trial class at any of our five centres. Just send us a message on WhatsApp.",
@@ -308,10 +382,10 @@ export const finalCta = {
 /* Centres                                                            */
 /* ------------------------------------------------------------------ */
 
-const TODO_SCHEDULE = [
-  // TODO: replace with the real class schedule
-  { day: "To be confirmed", time: "To be confirmed", group: "All levels" },
-];
+// TODO: add each centre's real class schedule. While a schedule is empty the page shows
+// "Message us on WhatsApp for current class times" instead of a table.
+// Example: [{ day: "Tuesday", time: "8:00pm – 9:30pm", group: "Kids (6–12)" }]
+const TODO_SCHEDULE: Centre["schedule"] = [];
 
 export const centresPage = {
   eyebrow: "Locations & Contact",

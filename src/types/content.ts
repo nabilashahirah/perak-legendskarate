@@ -17,19 +17,47 @@ export type FounderAchievement = { year: string; title: string; detail: string }
 
 export type FounderCount = { value: string; label: string };
 
-export type HallOfFameItem = {
+export type MedalCount = { gold: number; silver: number; bronze: number };
+
+/** One event on the Hall of Fame scoreboard */
+export type ResultCard = {
+  id: string;
+  event: string;
+  detail?: string;
+  /** Big number, e.g. "4" or "3rd" */
+  headline: string;
+  headlineLabel: string;
+  medals?: MedalCount;
+  /** Short lines under the medals, e.g. medallist names */
+  notes?: string[];
+};
+
+/** Athlete card with real photos (first image is the card, all open in the lightbox) */
+export type Athlete = {
+  id: string;
+  name: string;
+  achievement: string;
+  images: SiteImage[];
+};
+
+/** Poster shown in the Hall of Fame archive strip */
+export type Poster = {
   id: string;
   eyebrow: string;
   title: string;
   image: SiteImage;
-  /**
-   * Bento cell size. "feature" and "large" are 2x2, "tall" is 1x2.
-   * Keep talls in pairs between large cards so the grid tiles without holes.
-   */
-  size: "feature" | "large" | "tall";
-  /** Crop anchor in grid cards: posters read best from the top, photos from the centre */
-  focus?: "top" | "center";
 };
+
+/** Age-group programme card (section stays hidden until at least one is filled in) */
+export type ProgrammeGroup = {
+  name: string;
+  ages: string;
+  description: string;
+  /** e.g. "2x a week" or "RM 120 / month" */
+  details?: string[];
+};
+
+export type Faq = { question: string; answer: string };
 
 export type Coach = {
   id: string;
