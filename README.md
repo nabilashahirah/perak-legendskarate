@@ -80,7 +80,7 @@ The same script regenerates the logo variants, favicons/app icons and the Open G
 
 ## Deploy to Cloudflare Pages
 
-**Live site:** https://perak-legends.pages.dev (Cloudflare Pages project `perak-legends`)
+**Live site:** https://peraklegendskarate.pages.dev (Cloudflare Pages project `peraklegendskarate`)
 
 ### Redeploy after changes (current setup: direct upload)
 ```bash
