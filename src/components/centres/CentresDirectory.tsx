@@ -1,7 +1,7 @@
 import { ArrowUpRight, Clock, MapPin } from "lucide-react";
 import { centres, isTodo } from "@/content/site";
 import type { Centre } from "@/types/content";
-import { centreTrialLink, mapEmbedUrl, mapSearchUrl, whatsappLink } from "@/lib/links";
+import { centreEnquiryLink, centreTrialLink, mapEmbedUrl, mapSearchUrl, whatsappLink } from "@/lib/links";
 import { ButtonLink } from "@/components/ui/Button";
 import { WhatsAppIcon } from "@/components/ui/BrandIcons";
 import { Reveal } from "@/components/ui/Reveal";
@@ -47,58 +47,57 @@ export function CentresDirectory() {
         )}
       </article>
 
-      {/* Other centres */}
-      <h2 className="eyebrow mt-14 flex items-center gap-3 sm:mt-16">
-        <span aria-hidden="true" className="h-px w-8 bg-gold/60" />
-        Our other centres
-      </h2>
-      <ul className="mt-6 grid gap-3 sm:grid-cols-2 sm:gap-4">
+      {/* Other centres: names only, exact location shared on WhatsApp */}
+      <div className="mt-14 flex flex-col gap-2 sm:mt-16 sm:flex-row sm:items-end sm:justify-between">
+        <h2 className="eyebrow flex items-center gap-3">
+          <span aria-hidden="true" className="h-px w-8 bg-gold/60" />
+          More centres
+        </h2>
+        <p className="text-sm text-muted">Exact locations and class times are shared on WhatsApp.</p>
+      </div>
+      <ul className="mt-6 grid gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-4">
         {others.map((c, i) => (
           <Reveal
             as="li"
             key={c.id}
-            delay={i * 0.05}
-            className="card-frame flex scroll-mt-[calc(var(--header-h)+1rem)] items-center justify-between gap-4 p-5 sm:p-6"
+            delay={(i % 4) * 0.05}
+            className="card-frame group/centre relative flex items-center justify-between gap-4 p-5 transition-colors hover:border-gold/50 sm:flex-col sm:items-start sm:justify-between sm:p-6"
           >
-            <div id={c.id} className="min-w-0">
-              <p className="flex items-baseline gap-3">
-                <span className="font-display text-lg tracking-[0.06em] text-gold/80">{String(i + 2).padStart(2, "0")}</span>
-                <span className="display text-[2rem] leading-none text-cream sm:text-4xl">{c.name}</span>
-              </p>
-              <p className="mt-2 flex items-center gap-2 text-sm text-muted">
-                <MapPin aria-hidden="true" className="size-4 shrink-0 text-gold" />
-                {!isTodo(c.address) ? c.address : c.area}
-              </p>
+            <div id={c.id} className="min-w-0 scroll-mt-[calc(var(--header-h)+1rem)]">
+              <span className="font-display text-lg tracking-[0.06em] text-gold/80">{String(i + 2).padStart(2, "0")}</span>
+              <p className="display mt-1 text-[1.9rem] leading-[0.95] text-cream sm:text-[2.1rem]">{c.name}</p>
+              {!isTodo(c.address) && (
+                <p className="mt-2 flex items-center gap-2 text-sm text-muted">
+                  <MapPin aria-hidden="true" className="size-4 shrink-0 text-gold" />
+                  {c.address}
+                </p>
+              )}
               {c.schedule.length > 0 && <Schedule centre={c} compact />}
             </div>
-            {/* Phones: round icon button; larger screens: labelled button */}
             <a
-              href={centreTrialLink(c.name)}
+              href={centreEnquiryLink(c.name)}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label={`Book a trial at ${c.name} on WhatsApp`}
-              className="inline-flex size-12 shrink-0 items-center justify-center rounded-full border border-gold/60 text-gold-light transition-colors hover:bg-gold hover:text-ink-950 md:hidden"
+              aria-label={`Ask on WhatsApp for the ${c.name} centre's location and class times`}
+              className="inline-flex min-h-11 shrink-0 items-center gap-2 rounded-full border border-gold/60 px-3 text-gold-light transition-colors hover:bg-gold hover:text-ink-950 sm:mt-5 sm:px-4"
             >
-              <WhatsAppIcon className="size-5" />
+              <WhatsAppIcon className="size-5 sm:size-4" />
+              <span className="hidden text-[0.68rem] font-semibold uppercase tracking-[0.14em] sm:inline">Ask location</span>
             </a>
-            <div className="hidden shrink-0 md:block">
-              <ButtonLink href={centreTrialLink(c.name)} external variant="outline" size="sm">
-                <WhatsAppIcon className="size-4" /> Book at {c.name}
-              </ButtonLink>
-            </div>
           </Reveal>
         ))}
-      </ul>
 
-      <div className="mt-4 flex flex-col gap-4 rounded-[6px] border border-dashed border-hairline p-5 sm:flex-row sm:items-center sm:justify-between sm:p-6">
-        <p className="text-cream/85">
-          <span className="font-semibold text-cream">Not sure which centre?</span>{" "}
-          <span className="text-muted">Tell us where you live and the student&apos;s age, and we&apos;ll suggest the nearest class.</span>
-        </p>
-        <ButtonLink href={whatsappLink()} external variant="ghost" size="sm" className="shrink-0 self-start px-0 sm:self-center">
-          <WhatsAppIcon className="size-4 text-gold" /> Ask on WhatsApp
-        </ButtonLink>
-      </div>
+        {/* Helper fills the last cell (7 centres + 1 = a full 4-column grid) */}
+        <Reveal as="li" delay={0.15} className="flex flex-col justify-between gap-4 rounded-[6px] border border-dashed border-gold/30 p-5 sm:p-6">
+          <div>
+            <p className="display text-[1.9rem] leading-[0.95] text-cream sm:text-[2.1rem]">Not sure which centre?</p>
+            <p className="mt-2 text-sm text-muted">Tell us where you live and the student&apos;s age, and we&apos;ll suggest the nearest class.</p>
+          </div>
+          <ButtonLink href={whatsappLink()} external size="sm" className="self-start">
+            <WhatsAppIcon className="size-4" /> Ask us
+          </ButtonLink>
+        </Reveal>
+      </ul>
     </div>
   );
 }

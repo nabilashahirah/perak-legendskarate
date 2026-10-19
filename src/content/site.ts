@@ -19,6 +19,47 @@ import type {
   SiteImage,
 } from "@/types/content";
 
+// TODO: add each centre's real class schedule. While a schedule is empty the page shows
+// "Message us on WhatsApp for current class times" instead of a table.
+// Example: [{ day: "Tuesday", time: "8:00pm – 9:30pm", group: "Kids (6–12)" }]
+const TODO_SCHEDULE: Centre["schedule"] = [];
+
+/* ------------------------------------------------------------------ */
+/* Centres (kept at the top: counts and names elsewhere derive from it) */
+/* ------------------------------------------------------------------ */
+
+// The HQ is the only centre with an exact location on the site (map + address).
+// Every other centre is listed by name only; visitors WhatsApp for the exact location.
+export const centres: Centre[] = [
+  {
+    id: "buntong",
+    name: "Buntong",
+    isHQ: true,
+    area: "Desa Rishah, Buntong, Ipoh",
+    // From the academy's Google Maps listing (share link below)
+    address: "No 105A (1st Floor), Persiaran Raja Perempuan Mazwin Selatan, Desa Rishah Indah, 30100 Ipoh, Perak",
+    // Google listing name, so the embedded map pins the dojo itself
+    mapQuery: "Perak United Karate Academy, Buntong, Ipoh",
+    mapUrl: "https://share.google/dmp9n6YgwsdsQR0Zw",
+    schedule: TODO_SCHEDULE,
+  },
+  { id: "tasek", name: "Tasek", area: "Tasek, Ipoh", schedule: TODO_SCHEDULE },
+  { id: "kampar", name: "Kampar", area: "Kampar", schedule: TODO_SCHEDULE },
+  { id: "batu-gajah", name: "Batu Gajah", area: "Batu Gajah", schedule: TODO_SCHEDULE },
+  { id: "tanjung-rambutan", name: "Tanjung Rambutan", area: "Tanjung Rambutan", schedule: TODO_SCHEDULE },
+  { id: "botani", name: "Botani", area: "Bandar Baru Botani, Ipoh", schedule: TODO_SCHEDULE },
+  { id: "ipoh-town", name: "Ipoh Town", area: "Ipoh", schedule: TODO_SCHEDULE },
+  { id: "seri-iskandar", name: "Seri Iskandar", area: "Seri Iskandar", schedule: TODO_SCHEDULE },
+];
+
+const NUMBER_WORDS = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve"];
+/** e.g. "eight" */
+export const centreCountWord = NUMBER_WORDS[centres.length] ?? String(centres.length);
+const listNames = (names: string[]) => `${names.slice(0, -1).join(", ")} and ${names[names.length - 1]}`;
+/** e.g. "Buntong, Tasek, … and Seri Iskandar" */
+export const centreNameList = listNames(centres.map((c) => c.name));
+const capitalise = (w: string) => w[0].toUpperCase() + w.slice(1);
+
 /* ------------------------------------------------------------------ */
 /* Brand & links                                                      */
 /* ------------------------------------------------------------------ */
@@ -31,7 +72,7 @@ export const site = {
   tagline: "The Biggest in Perak",
   affiliation: "Affiliated to Kelab Karate Ipoh under Pesuruhjaya Sukan Malaysia (KBS)",
   description:
-    "Perak Legends Karate Academy (Perak United): competitive karate in Perak, founded by Asian Karate Champion Dr Wugindran Raja Saravanan. Centres in Buntong, Tasek, Batu Gajah, Kampar and Botani.",
+    `Perak Legends Karate Academy (Perak United): competitive karate in Perak, founded by Asian Karate Champion Dr Wugindran Raja Saravanan. Centres in ${centreNameList}.`,
   // TODO: replace with the real domain once it is connected in Cloudflare Pages
   url: "https://perak-legends.pages.dev",
   established: "April 2021",
@@ -52,7 +93,11 @@ export const contact = {
 export const trialMessage =
   "Hi Perak Legends! I'd like to book a trial class.\nName:\nAge:\nPreferred centre:\nPreferred day:";
 
-/** Pre-filled WhatsApp message for a specific centre ({centre} is replaced with the centre name) */
+/** Pre-filled WhatsApp message for centres without a listed location ({centre} is replaced with the centre name) */
+export const centreEnquiryMessage =
+  "Hi Perak Legends! I'm interested in the {centre} centre. Could you share the exact location and class times?\nName:\nAge:";
+
+/** Pre-filled WhatsApp message for the HQ ({centre} is replaced with the centre name) */
 export const centreTrialMessage =
   "Hi Perak Legends! I'd like to book a trial class at the {centre} centre.\nName:\nAge:\nPreferred day:";
 
@@ -94,7 +139,7 @@ export const marquee: string[] = [
   "4 National Medals 2026",
   "National University Silver 2026",
   "25th MILO Karate Championship",
-  "5 Centres Across Perak",
+  `${centres.length} Centres Across Perak`,
 ];
 
 export const about = {
@@ -110,7 +155,7 @@ export const about = {
   },
   stats: [
     { value: 2021, prefix: "Est. ", label: "Founded at Desa Rishah, Buntong" },
-    { value: 5, label: "Centres across Perak" },
+    { value: centres.length, label: "Centres across Perak" },
     { text: "Biggest", label: "in Perak: our mission" },
   ] as { value?: number; prefix?: string; text?: string; label: string }[],
 };
@@ -350,7 +395,7 @@ export const faq = {
     },
     {
       question: "Where are your centres?",
-      answer: "We train at five centres across Perak: Buntong (HQ), Tasek, Batu Gajah, Kampar and Botani.",
+      answer: `We train at ${centreCountWord} centres across Perak: ${listNames(centres.map((c) => (c.isHQ ? `${c.name} (HQ)` : c.name)))}. Our HQ is in Desa Rishah, Buntong; message us on WhatsApp for the exact location of any other centre.`,
     },
     {
       question: "Who runs the academy?",
@@ -375,7 +420,7 @@ export const faq = {
 
 export const finalCta = {
   title: "Ready to start your journey?",
-  body: "Book a trial class at any of our five centres. Just send us a message on WhatsApp.",
+  body: `Book a trial class at any of our ${centreCountWord} centres. Just send us a message on WhatsApp.`,
   cta: "Book a Trial",
 };
 
@@ -383,36 +428,13 @@ export const finalCta = {
 /* Centres                                                            */
 /* ------------------------------------------------------------------ */
 
-// TODO: add each centre's real class schedule. While a schedule is empty the page shows
-// "Message us on WhatsApp for current class times" instead of a table.
-// Example: [{ day: "Tuesday", time: "8:00pm – 9:30pm", group: "Kids (6–12)" }]
-const TODO_SCHEDULE: Centre["schedule"] = [];
 
 export const centresPage = {
   eyebrow: "Locations & Contact",
   title: "Our Centres",
-  intro: "Five centres across Perak, one standard of excellence. Find the one closest to you and book a trial on WhatsApp.",
+  intro: `${capitalise(centreCountWord)} centres across Perak, one standard of excellence. Find the one closest to you and book a trial on WhatsApp.`,
 };
 
-// Only the HQ shows a map; the other centres are listed by name and area.
-export const centres: Centre[] = [
-  {
-    id: "buntong",
-    name: "Buntong",
-    isHQ: true,
-    area: "Desa Rishah, Buntong, Ipoh",
-    // From the academy's Google Maps listing (share link below)
-    address: "No 105A (1st Floor), Persiaran Raja Perempuan Mazwin Selatan, Desa Rishah Indah, 30100 Ipoh, Perak",
-    // Google listing name, so the embedded map pins the dojo itself
-    mapQuery: "Perak United Karate Academy, Buntong, Ipoh",
-    mapUrl: "https://share.google/dmp9n6YgwsdsQR0Zw",
-    schedule: TODO_SCHEDULE,
-  },
-  { id: "tasek", name: "Tasek", area: "Tasek, Ipoh", schedule: TODO_SCHEDULE },
-  { id: "batu-gajah", name: "Batu Gajah", area: "Batu Gajah", schedule: TODO_SCHEDULE },
-  { id: "kampar", name: "Kampar", area: "Kampar", schedule: TODO_SCHEDULE },
-  { id: "botani", name: "Botani", area: "Bandar Baru Botani, Ipoh", schedule: TODO_SCHEDULE },
-];
 
 /** True while a value is still a placeholder (used to style TODO text) */
 export const isTodo = (value?: string) => !value || value.startsWith("TODO");
