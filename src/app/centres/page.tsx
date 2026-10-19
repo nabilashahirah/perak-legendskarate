@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { centres, centresPage, contact, site } from "@/content/site";
 import { bookTrialLink, whatsappLink } from "@/lib/links";
-import { CentreLocator } from "@/components/centres/CentreLocator";
+import { CentresDirectory } from "@/components/centres/CentresDirectory";
 import { InstagramIcon, TikTokIcon, WhatsAppIcon } from "@/components/ui/BrandIcons";
 import { Reveal } from "@/components/ui/Reveal";
 import { ButtonLink } from "@/components/ui/Button";
@@ -37,7 +37,7 @@ export default function CentresPage() {
 
       <section aria-label="Centre finder" className="pb-20 sm:pb-28">
         <div className="container-x">
-          <CentreLocator />
+          <CentresDirectory />
         </div>
       </section>
 

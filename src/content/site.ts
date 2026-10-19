@@ -247,6 +247,7 @@ export const hallOfFame = {
       achievement: "Southeast Asia Bronze Medallist",
       images: [
         hof("navinessan-vickneswaran", 960, 1280, "Master Navinessan Vickneswaran holding his Southeast Asia bronze medal in the competition arena"),
+        hof("navinessan-vickneswaran-ceremony", 916, 596, "Master Navinessan Vickneswaran (right) on the podium with his bronze medal at the 13th SEAKF South East Asian Karate Championship medal ceremony in Ninh Binh"),
       ],
     },
     {
@@ -393,53 +394,24 @@ export const centresPage = {
   intro: "Five centres across Perak, one standard of excellence. Find the one closest to you and book a trial on WhatsApp.",
 };
 
+// Only the HQ shows a map; the other centres are listed by name and area.
 export const centres: Centre[] = [
   {
     id: "buntong",
     name: "Buntong",
     isHQ: true,
     area: "Desa Rishah, Buntong, Ipoh",
-    address: "TODO: full address",
-    mapQuery: "Desa Rishah, Buntong, Ipoh, Perak",
-    mapUrl: undefined, // TODO: Google Maps share link
+    // From the academy's Google Maps listing (share link below)
+    address: "No 105A (1st Floor), Persiaran Raja Perempuan Mazwin Selatan, Desa Rishah Indah, 30100 Ipoh, Perak",
+    // Google listing name, so the embedded map pins the dojo itself
+    mapQuery: "Perak United Karate Academy, Buntong, Ipoh",
+    mapUrl: "https://share.google/dmp9n6YgwsdsQR0Zw",
     schedule: TODO_SCHEDULE,
   },
-  {
-    id: "tasek",
-    name: "Tasek",
-    area: "Tasek, Ipoh",
-    address: "TODO: full address",
-    mapQuery: "Tasek, Ipoh, Perak",
-    mapUrl: undefined, // TODO
-    schedule: TODO_SCHEDULE,
-  },
-  {
-    id: "batu-gajah",
-    name: "Batu Gajah",
-    area: "Batu Gajah",
-    address: "TODO: full address",
-    mapQuery: "Batu Gajah, Perak",
-    mapUrl: undefined, // TODO
-    schedule: TODO_SCHEDULE,
-  },
-  {
-    id: "kampar",
-    name: "Kampar",
-    area: "Kampar",
-    address: "TODO: full address",
-    mapQuery: "Kampar, Perak",
-    mapUrl: undefined, // TODO
-    schedule: TODO_SCHEDULE,
-  },
-  {
-    id: "botani",
-    name: "Botani",
-    area: "Bandar Baru Botani, Ipoh",
-    address: "TODO: full address",
-    mapQuery: "Bandar Botani, Ipoh, Perak",
-    mapUrl: undefined, // TODO
-    schedule: TODO_SCHEDULE,
-  },
+  { id: "tasek", name: "Tasek", area: "Tasek, Ipoh", schedule: TODO_SCHEDULE },
+  { id: "batu-gajah", name: "Batu Gajah", area: "Batu Gajah", schedule: TODO_SCHEDULE },
+  { id: "kampar", name: "Kampar", area: "Kampar", schedule: TODO_SCHEDULE },
+  { id: "botani", name: "Botani", area: "Bandar Baru Botani, Ipoh", schedule: TODO_SCHEDULE },
 ];
 
 /** True while a value is still a placeholder (used to style TODO text) */

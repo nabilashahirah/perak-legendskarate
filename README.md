@@ -46,10 +46,10 @@ npx serve out      # preview it at http://localhost:3000
 Search the file for **`TODO`** to find everything that's still missing.
 
 ### Centres
-Each centre has:
-- `address`: replace `"TODO: full address"` with the real address (the page shows the area plus *"Full address coming soon"* until you do).
-- `mapQuery`: what the embedded Google Map searches for. Once the address is known, put the full address here.
-- `mapUrl`: optional Google Maps share link (`https://maps.app.goo.gl/...`) for the **Open in Maps** button. Without it, the button opens a search for `mapQuery`.
+The HQ (Buntong, `isHQ: true`) is shown as a featured card with an embedded map; the other centres are a simple list.
+- `address`: optional street address (the area is shown when it's missing).
+- `mapQuery`: what the embedded map searches for. Only centres with a `mapQuery` get a map (currently just the HQ, which uses its Google listing name so the pin is exact).
+- `mapUrl`: the Google Maps share link for the **Open in Google Maps** button.
 - `schedule`: a list of `{ day, time, group }` rows. While it's empty the page says *"Message us on WhatsApp for current class times"*. Example:
   ```ts
   schedule: [
@@ -104,7 +104,7 @@ src/
   components/
     layout/            Header, Footer, floating WhatsApp button
     sections/          Home page sections (Hero, About, Founder, Programmes, HallOfFame, Coaches, Faq…)
-    centres/           Centre locator (list + map panel) and lazy map embed
+    centres/           Centres directory (HQ card with map + list) and lazy map embed
     ui/                Buttons, Lightbox, Reveal (scroll animation), CountUp, brand icons
   content/site.ts      ← ALL editable content
   lib/links.ts         WhatsApp / Google Maps URL helpers

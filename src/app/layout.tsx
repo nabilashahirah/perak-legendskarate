@@ -66,6 +66,7 @@ const jsonLd = {
   location: centres.map((c) => ({
     "@type": "Place",
     name: `${site.shortName} ${c.name}${c.isHQ ? " (HQ)" : ""}`,
+    ...(c.mapUrl && { hasMap: c.mapUrl }),
     address: { "@type": "PostalAddress", addressLocality: c.area, addressRegion: "Perak", addressCountry: "MY" },
   })),
 };

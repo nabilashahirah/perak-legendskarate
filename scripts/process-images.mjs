@@ -28,6 +28,7 @@ const JOBS = [
   ["2NATIONALCHAMPION 2026 - SAMSON KENDRICK.jpeg", "hall-of-fame/samson-kendrick-2"],
   ["OVERALLMEDALNATIONALCHAMPION 2026.jpeg", "hall-of-fame/overall-medal-national-2026"],
   ["SOUTHEASTASIABRONZEMEDALNAVINESSANVICKNESWARAN.jpeg", "hall-of-fame/navinessan-vickneswaran"],
+  ["the Southeast Asia Medal ceremony.jpeg", "hall-of-fame/navinessan-vickneswaran-ceremony"],
   ["25THMILOKARATECHAMPIONSHIP2026.jpeg", "hall-of-fame/milo-championship-2026-1"],
   ["(2)25THMILOKARATECHAMPIONSHIP2026.jpeg", "hall-of-fame/milo-championship-2026-2"],
   ["TOP3NSATIONALWIDE.jpeg", "hall-of-fame/top-3-nationwide-1"],

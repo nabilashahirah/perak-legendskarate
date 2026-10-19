@@ -74,12 +74,12 @@ export type Centre = {
   name: string;
   isHQ?: boolean;
   area: string;
-  /** TODO: full street address */
-  address: string;
-  /** Search phrase for the temporary Google Maps embed */
-  mapQuery: string;
-  /** TODO: real Google Maps share link (https://maps.app.goo.gl/...) */
+  /** Full street address (optional; the area is shown when missing) */
+  address?: string;
+  /** Search phrase for the embedded map. Only centres with a mapQuery get a map (currently the HQ). */
+  mapQuery?: string;
+  /** Google Maps share link for the "Open in Google Maps" button */
   mapUrl?: string;
-  /** TODO: real class schedule */
+  /** Class schedule; empty shows "Message us on WhatsApp for current class times" */
   schedule: ScheduleRow[];
 };
