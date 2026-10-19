@@ -37,8 +37,11 @@ export function Hero() {
             <span className="anim-rise block text-[clamp(1.6rem,4vw,2.6rem)] tracking-[0.12em] text-cream/90 [animation-delay:80ms]">
               {hero.kicker}
             </span>
-            <span className="anim-rise h-display-xl mt-1 block [animation-delay:140ms]">Perak</span>
-            <span className="anim-rise h-display-xl text-gold-gradient block [animation-delay:200ms]">Legends</span>
+            <span className="anim-rise h-display-xl mt-1 block [animation-delay:140ms]">{hero.title.split(" ")[0]}</span>
+            <span className="anim-rise h-display-xl text-gold-gradient block [animation-delay:200ms]">{hero.title.split(" ").slice(1).join(" ")}</span>
+            <span className="anim-rise mt-2 block text-[clamp(1.6rem,4vw,2.6rem)] tracking-[0.12em] text-cream/90 [animation-delay:240ms]">
+              {hero.titleSuffix}
+            </span>
           </h1>
 
           <p className="anim-rise mx-auto mt-6 max-w-md text-lg leading-relaxed lg:mx-0 text-cream/85 [animation-delay:280ms] sm:text-xl">

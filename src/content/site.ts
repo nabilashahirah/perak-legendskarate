@@ -126,6 +126,7 @@ export const nav: NavItem[] = [
 export const hero = {
   kicker: "Welcome to",
   title: "Perak Legends",
+  titleSuffix: "Karate Academy",
   subtitle: "You are about to witness the journey towards greatness",
   primaryCta: "Book a Trial",
   secondaryCta: "Our Centres",
