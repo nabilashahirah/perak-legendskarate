@@ -73,8 +73,7 @@ export const site = {
   affiliation: "Affiliated to Kelab Karate Ipoh under Pesuruhjaya Sukan Malaysia (KBS)",
   description:
     `Perak Legends Karate Academy (Perak United): competitive karate in Perak, founded by Asian Karate Champion Dr Wugindran Raja Saravanan. Centres in ${centreNameList}.`,
-  // TODO: replace with the real domain once it is connected in Cloudflare Pages
-  url: "https://peraklegendskarate.pages.dev",
+  url: "https://perakkarate.com",
   established: "April 2021",
   locale: "en_MY",
 } as const;

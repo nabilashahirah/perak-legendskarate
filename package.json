@@ -9,7 +9,7 @@
     "start": "next start",
     "lint": "eslint",
     "images": "node scripts/process-images.mjs",
-    "deploy": "npm run build && npx --yes wrangler@4 pages deploy out --project-name peraklegendskarate --branch main"
+    "deploy": "npm run build && node scripts/deploy.mjs"
   },
   "dependencies": {
     "lucide-react": "^1.59.0",

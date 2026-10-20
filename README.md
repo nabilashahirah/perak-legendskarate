@@ -80,13 +80,17 @@ The same script regenerates the logo variants, favicons/app icons and the Open G
 
 ## Deploy to Cloudflare Pages
 
-**Live site:** https://peraklegendskarate.pages.dev (Cloudflare Pages project `peraklegendskarate`)
+**Live site:** https://perakkarate.com (also https://www.perakkarate.com)
+Hosted in the academy's Cloudflare account (**Perakunited@gmail.com's Account**), Pages project `perakkarate`.
+The domain `perakkarate.com` is registered in the same account (Cloudflare Registrar).
 
-### Redeploy after changes (current setup: direct upload)
+### Redeploy after changes
 ```bash
-npx wrangler login     # once per computer: approve in the browser
-npm run deploy         # builds and uploads out/ to production
+npx wrangler login     # once per computer: approve in the browser and TICK the academy's account
+npm run deploy         # builds and uploads out/ to production (scripts/deploy.mjs)
 ```
+
+You must be a member of the academy's Cloudflare account (Manage Account → Members).
 
 > Don't run `wrangler deploy` or let Wrangler "set up" the project: newer Wrangler versions try to convert
 > Next.js apps to a server build (OpenNext), which this static site doesn't need. `npm run deploy` uses
