@@ -25,7 +25,7 @@ export function Faq() {
       <div className="container-x relative grid grid-cols-1 gap-10 lg:grid-cols-12 lg:gap-16">
         <div className="lg:col-span-4">
           <div className="lg:sticky lg:top-28">
-            <SectionHeading id="faq-title" index="06" eyebrow={faq.eyebrow} title={faq.title} />
+            <SectionHeading id="faq-title" index="07" eyebrow={faq.eyebrow} title={faq.title} />
             <Reveal delay={0.05} className="mt-8 hidden lg:block">
               <p className="text-muted">Still have a question?</p>
               <ButtonLink href={whatsappLink()} external variant="outline" className="mt-4">

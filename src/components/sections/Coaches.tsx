@@ -18,7 +18,7 @@ export function Coaches() {
     <section id="coaches" aria-labelledby="coaches-title" className="section-y relative overflow-hidden">
       <div aria-hidden="true" className="glow -right-40 bottom-0 size-[36rem] opacity-50" />
       <div className="container-x relative">
-        <SectionHeading id="coaches-title" index="05" eyebrow={coaches.eyebrow} title={coaches.title} intro={coaches.intro} />
+        <SectionHeading id="coaches-title" index="06" eyebrow={coaches.eyebrow} title={coaches.title} intro={coaches.intro} />
       </div>
 
       <ul

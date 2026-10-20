@@ -47,6 +47,8 @@ const JOBS = [
   ["gallerycoach3.jpeg", "coaches/coach-3-poster"],
   ["gallerycoach4.jpeg", "coaches/coach-4-poster"],
   ["gallerycoach15.jpeg", "coaches/coach-5-poster"],
+  // Student gallery (student8.jpeg is a duplicate of the MILO poster, so it's skipped)
+  ...[1, 2, 3, 4, 5, 6, 7, 9, 10, 11, 12, 13, 14, 15, 16, 17].map((n) => [`student${n}.jpeg`, `students/student-${n}`]),
 ];
 
 const outPath = (rel) => {

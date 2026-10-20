@@ -89,7 +89,7 @@ export function Header() {
             </span>
           </Link>
 
-          <nav aria-label="Main" className="hidden lg:block">
+          <nav aria-label="Main" className="hidden xl:block">
             <ul className="flex items-center gap-1">
               {nav.map((item) => {
                 const on = isActive(item.sectionId, item.href);
@@ -128,7 +128,7 @@ export function Header() {
             <button
               ref={menuButtonRef}
               type="button"
-              className="inline-flex size-11 items-center justify-center rounded-[4px] border border-hairline text-cream transition-colors hover:border-gold lg:hidden"
+              className="inline-flex size-11 items-center justify-center rounded-[4px] border border-hairline text-cream transition-colors hover:border-gold xl:hidden"
               aria-expanded={menuOpen}
               aria-controls="mobile-menu"
               aria-label={menuOpen ? "Close menu" : "Open menu"}
@@ -145,7 +145,7 @@ export function Header() {
         {menuOpen && (
           <motion.div
             id="mobile-menu"
-            className="fixed inset-x-0 bottom-0 top-[var(--header-h)] z-40 flex flex-col overflow-y-auto bg-ink-950 lg:hidden"
+            className="fixed inset-x-0 bottom-0 top-[var(--header-h)] z-40 flex flex-col overflow-y-auto bg-ink-950 xl:hidden"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}

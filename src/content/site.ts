@@ -114,6 +114,7 @@ export const nav: NavItem[] = [
   { label: "Founder", href: "/#founder", sectionId: "founder" },
   { label: "Programmes", href: "/#programmes", sectionId: "programmes" },
   { label: "Hall of Fame", href: "/#hall-of-fame", sectionId: "hall-of-fame" },
+  { label: "Students", href: "/#students", sectionId: "students" },
   { label: "Coaches", href: "/#coaches", sectionId: "coaches" },
   { label: "Centres", href: "/centres" },
 ];
@@ -357,6 +358,46 @@ export const hallOfFame = {
       image: hof("no1-standalone-club-perak", 960, 1280, "Poster naming Perak Legends the No.1 standalone karate club and academy in Perak, featuring founder Dr Wugindran Raja Saravanan"),
     },
   ] satisfies Poster[],
+};
+
+const MILO = "25th MILO International Open Karate Championship 2026";
+const TWOS = "2's International Karate Club Championship 2026";
+const student = (n: number, width: number, height: number, event: string, alt: string) => ({
+  image: {
+    src: `/images/students/student-${n}.webp`,
+    thumb: `/images/students/student-${n}-sm.webp`,
+    width,
+    height,
+    alt,
+  } satisfies SiteImage,
+  event,
+});
+
+export const students = {
+  eyebrow: "Students",
+  title: "Future legends",
+  intro: "Our students on the podium. Tap any photo to view it in full.",
+  /** How many photos show before "View all" (phones and desktop) */
+  initialCount: 8,
+  // Strongest / most recent first. Add new photos via scripts/process-images.mjs, then list them here.
+  items: [
+    student(15, 1280, 1280, MILO, "Two Perak Legends students in yellow and black jackets giving a thumbs up with their medals"),
+    student(16, 1280, 1280, MILO, "Perak Legends students on the podium holding the Perak state flag"),
+    student(12, 1280, 720, MILO, "Perak Legends team celebrating with their medals and certificates"),
+    student(11, 1280, 960, MILO, "Perak Legends students lined up with their medals and certificates in the arena"),
+    student(10, 1280, 720, MILO, "Two young Perak Legends students holding their certificates on the podium"),
+    student(14, 1280, 960, MILO, "Perak Legends student on the podium holding the Perak flag"),
+    student(13, 1280, 960, MILO, "Perak Legends student on top of the podium at the MILO championship"),
+    student(7, 722, 1280, TWOS, "Two Perak Legends students sitting on the podium with their medals"),
+    student(1, 960, 1280, TWOS, "Perak Legends student standing on top of the podium"),
+    student(3, 1280, 720, TWOS, "Young Perak Legends students in karate uniforms on the podium with their coach"),
+    student(5, 1280, 720, TWOS, "Perak Legends students on the podium holding their certificates with their coach"),
+    student(2, 1280, 960, TWOS, "Perak Legends students on the podium with their certificates"),
+    student(6, 960, 1280, TWOS, "Young Perak Legends student holding up a medal on the podium"),
+    student(9, 1280, 720, MILO, "Perak Legends students on the podium at the MILO championship"),
+    student(4, 1280, 958, TWOS, "Perak Legends students and coach at the podium"),
+    student(17, 1280, 720, MILO, "Medal ceremony at the MILO International Open with Perak Legends students on the podium"),
+  ],
 };
 
 const coach = (n: number, w: number, h: number, alt: string, people: Coach["people"]): Coach => ({
