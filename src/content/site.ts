@@ -174,7 +174,7 @@ export const founder = {
     alt: "Portrait of Dr Wugindran Raja Saravanan, founder of Perak Legends Karate Academy, in a black suit with arms crossed",
   } satisfies SiteImage,
   highlights: [
-    "First ever Asian Karate Champion (AKF) as a medical practitioner",
+    "First ever Asian Karate Champion (AKF) as a medical practitioner in Malaysia",
     "First ever medical doctor national karate medallist while actively working as a Medical Officer serving Hospital Raja Permaisuri Bainun (2023)",
     "MBBS, MSU Shah Alam (2020). Active medical practitioner in Ipoh, Perak",
   ],
@@ -423,7 +423,7 @@ export const coaches = {
         name: "Dr Wugindran Raja Saravanan (MBBS)",
         credentials: [
           "Graduated from MSU Shah Alam in 2020",
-          "First ever Asian Karate Champion (AKF) as a medical practitioner",
+          "First ever Asian Karate Champion (AKF) as a medical practitioner in Malaysia",
           "Active medical practitioner in Ipoh, Perak",
         ],
       },
